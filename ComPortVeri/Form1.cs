@@ -60,9 +60,12 @@ namespace ComPortVeri
                             {
                                 okunan += deger;
                                 if (sonDeger != okunan)
+                                {
                                     lbGelenDeger.Items.Add(okunan);
-                                sonDeger = okunan;
-                                okunan = "";
+                                    sonDeger = okunan;
+                                    okunan = "";
+
+                                }
                             }
                             else if (deger != ' ')
                             {
