@@ -53,7 +53,7 @@ namespace ComPortVeri
                     {
                         while (portAcikMi)
                         {
-                            txtSonuc.Text = bizimPort.ReadExisting();
+                            lbGelenDeger.Items.Add(bizimPort.ReadExisting());
                         }
 
                     }));
