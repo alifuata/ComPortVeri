@@ -48,12 +48,24 @@ namespace ComPortVeri
                     bizimPort.Open();
                     portAcikMi = true;
                     btnOpen.Text = "Kapat";
+                    string okunan = "";
                     //arayüzün kilitlenmemesi için gelen veriyi okuduğumuz kısım thread içinde
                     Thread thread = new Thread(new ThreadStart(() =>
                     {
                         while (portAcikMi)
                         {
-                            lbGelenDeger.Items.Add(bizimPort.ReadExisting());
+                            char deger = (char)bizimPort.ReadChar();
+                            if (deger=='g')
+                            {
+                                okunan += deger;
+                                lbGelenDeger.Items.Add(okunan);
+                                okunan = "";
+                            }
+                            else if(deger!=' ')
+                            {
+                                okunan += deger;
+                            }
+                            
                         }
 
                     }));
