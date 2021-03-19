@@ -71,6 +71,8 @@ namespace ComPortVeri
                                             okunan += "kg";
                                             lbGelenDeger.Items.Add(okunan);
                                             okunan = "";
+                                            txtRakam.Text = okunanRakam;
+                                            okunanRakam = "";
                                             break;
                                         }
                                         else
