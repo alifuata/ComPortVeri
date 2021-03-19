@@ -49,6 +49,7 @@ namespace ComPortVeri
                     portAcikMi = true;
                     btnOpen.Text = "Kapat";
                     string okunan = "";
+                    string okunanRakam = "";
                     string sonDeger = "";
                     //arayüzün kilitlenmemesi için gelen veriyi okuduğumuz kısım thread içinde
                     Thread thread = new Thread(new ThreadStart(() =>
@@ -56,16 +57,32 @@ namespace ComPortVeri
                         while (portAcikMi)
                         {
                             char deger = (char)bizimPort.ReadChar();
-                            if (deger == 'g')
+                            if (deger == 'S')
                             {
                                 okunan += deger;
-                                if (sonDeger != okunan)
+                                while (true)
                                 {
-                                    lbGelenDeger.Items.Add(okunan);
-                                    sonDeger = okunan;
-                                    okunan = "";
+                                    deger = (char)bizimPort.ReadChar();
+                                    if (deger != ' ')
+                                    {
 
+                                        if (deger == 'k')
+                                        {
+                                            okunan += "kg";
+                                            lbGelenDeger.Items.Add(okunan);
+                                            okunan = "";
+                                            break;
+                                        }
+                                        else
+                                        {
+                                            okunanRakam += deger;
+                                            okunan += deger;
+                                        }
+                                    }
+
+                                   
                                 }
+
                             }
                             else if (deger != ' ')
                             {
@@ -92,3 +109,20 @@ namespace ComPortVeri
         }
     }
 }
+/* 
+ if (deger == 'g')
+                            {
+                                okunan += deger;
+                                if (sonDeger != okunan)
+                                {
+                                    lbGelenDeger.Items.Add(okunan);
+                                    sonDeger = okunan;
+                                    okunan = "";
+
+                                }
+                            }
+                            else if (deger != ' ')
+                            {
+                                okunan += deger;
+                            }
+*/
